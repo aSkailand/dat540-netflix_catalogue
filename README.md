@@ -10,3 +10,4 @@ Setup:
 
     source env/Scripts/acitvate
   
+( or just work from the jupyter notebook file :-) )

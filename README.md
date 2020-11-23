@@ -8,7 +8,5 @@ Setup:
 
 3. run this command when in root of this project:  
 
-  3.a Windows: (run the activate.bat script in env/Scripts)  
-  
-  3.b Mac: source env/Scripts/acitvate (from terminal)  
+    source env/Scripts/acitvate
   

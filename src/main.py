@@ -13,8 +13,8 @@ def get_netflix_catalogue_dataframe():
 if __name__ == "__main__":
     data_set =  get_netflix_catalogue_dataframe()
     data_sanitizer.handle_null_values(data_set) 
+    unique_genres = get_unique_genres.get_unique_genres(data_set)
 
-    get_unique_genres.get_unique_genres(data_set)
 
 
 

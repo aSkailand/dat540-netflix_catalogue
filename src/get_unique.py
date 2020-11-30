@@ -13,6 +13,7 @@ def get_unique(data_list):
     unique_list = []
     for entry in data_list:
         entry = entry.split(", ")
-        for e in entry: 
+        for e in entry:
+            e = e.replace(',', '') 
             unique_list.append(e)
     return numpy.unique(unique_list)

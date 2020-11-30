@@ -8,7 +8,7 @@ netflix_titles_filepath = 'netflix_titles.csv'
 
 def get_netflix_catalogue_dataframe():
     '''
-        Retruns netflix titles as a pandas dataframe.
+        Returns netflix titles as a pandas dataframe.
     '''
     return pandas.DataFrame(pandas.read_csv(netflix_titles_filepath))
 

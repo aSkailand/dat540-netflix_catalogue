@@ -19,14 +19,14 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
 netflix_data=pd.read_csv("netflix_titles.csv")
-netflix_data.director.fillna("No Director", inplace=True)
-netflix_data.cast.fillna("No Cast", inplace=True) # feil?
+#netflix_data.director.fillna("No Director", inplace=True)
+#netflix_data.cast.fillna("No Cast", inplace=True) # feil?
 netflix_data.country.fillna("Country Unavailable", inplace=True)
-netflix_data.dropna(subset=["date_added", "rating"], inplace=True)
+netflix_data.dropna(subset=["date_added", "rating", "director", "cast"], inplace=True)
 
 smaller_data = netflix_data.copy()
 y = smaller_data.listed_in
-X = [','.join((a, d)) for a,d in zip(smaller_data.director, smaller_data.cast)]
+X = [','.join((a, d, r, t, dest)) for a,d,r,t,dest in zip(smaller_data.director, smaller_data.cast, smaller_data.rating, smaller_data.title, smaller_data.description)]
 
 my_additional_stop_words=['no cast', 'no director']
 add_stop_words = text.ENGLISH_STOP_WORDS.union(my_additional_stop_words)
@@ -36,6 +36,9 @@ X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_sta
 matrix = CountVectorizer(tokenizer=lambda x: x.split(','), stop_words=add_stop_words)
 x_train_fit = matrix.fit_transform(X_train)
 x_test_fit = matrix.transform(X_test)
+
+print(matrix.get_feature_names())
+
 
 y_train_fit = matrix.fit_transform(y_train)
 y_test_fit = matrix.transform(y_test)
@@ -49,7 +52,7 @@ datetime_object = datetime.datetime.now()
 print("Begin ML: ", datetime_object)
 
 
-clf = MLPClassifier(hidden_layer_sizes=(hidden_layer1, hidden_layer1),
+clf = MLPClassifier(hidden_layer_sizes=(hidden_layer1 ),
                     solver='adam', verbose=True, 
                     random_state=1, max_iter=50) #tol=0.00000001,max_iter=1000,
 
@@ -68,3 +71,7 @@ print("End ML: ", datetime_object)
 # %%
 # overfitting?
 # loss function
+
+# TODO: split words in summary/title better
+# TODO: Take "TV Shows" out of data?
+

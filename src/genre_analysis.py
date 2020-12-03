@@ -13,6 +13,9 @@ class GenreAnalysis:
         self.pop_genre_list = new_pop_genre_list
 
     def discard_type_from_genre(self, type):
+        '''
+            Discards type that should not be analysed
+        '''
         self.genres = list(self.genres)
         if type == 'Movie' and 'Movies' in self.genres:
             self.genres.remove('Movies')
@@ -20,6 +23,9 @@ class GenreAnalysis:
             self.genres.remove('TV Shows')
  
     def analyse(self, type):
+        '''
+            Finds each unique genre and how many times that genre is listed in the netflix catalogue.
+        '''
         self.discard_type_from_genre(type)
         filter = self.data_set['type'] == type
         data = self.data_set.where(filter).dropna()
@@ -34,7 +40,6 @@ class GenreAnalysis:
             if (pop_count != 0):
                 pop_genre_country_dict[pop_genre] =  pop_count
 
-        print(pop_genre_country_dict)
         return pop_genre_country_dict
 
 

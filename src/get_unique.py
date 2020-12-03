@@ -1,6 +1,10 @@
 import pandas
 import numpy
 
+def directors(dataset):
+    directors_list = dataset.director.tolist()
+    return get_unique(directors_list)
+
 def genres(dataset):
     genres_list = dataset.listed_in.tolist()
     return get_unique(genres_list)

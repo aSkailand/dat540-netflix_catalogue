@@ -1,7 +1,6 @@
 import pandas
 import numpy
 
-
 def analyse(names, dataset):
     female_names = names.loc[names['gender'] == 'F'].iloc[:,0]
     male_names = names.loc[names['gender'] == 'M'].iloc[:, 0]
@@ -19,10 +18,8 @@ def analyse(names, dataset):
     males_in_netflix = 0
     females_in_netflix = 0
     idx = 0
-    print(len(first_name_occurences))
     male_names_str = male_names.str
     female_names_str = female_names.str
-    print(male_names_str)
     for name in first_name_occurences:
         males_in_netflix += male_names_str.count(name).sum()
         females_in_netflix += female_names_str.count(name).sum()

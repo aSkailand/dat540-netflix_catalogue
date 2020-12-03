@@ -26,6 +26,9 @@ if __name__ == "__main__":
     unique_countries = get_unique.countires(data_set)
 
     names = get_names_dataframe()
-    gender_analysis.analyse(names, data_set)
+
+    if (input('analyse gender representation? *takes up to 10 minutes* hit: [y]') == 'y'):
+        gender_analysis.analyse(names, data_set)
+
 
 

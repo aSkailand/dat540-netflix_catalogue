@@ -2,5 +2,9 @@
     "jupyter.jupyterServerType": "local",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
+<<<<<<< HEAD
     "python.pythonPath": "/Users/Anne/opt/anaconda3/bin/python"
+=======
+    "python.pythonPath": "C:\\Users\\aleks\\Anaconda3\\python.exe"
+>>>>>>> 6119b49a6bd7b02d22e47fd8c0026c0fd88830ba
 }

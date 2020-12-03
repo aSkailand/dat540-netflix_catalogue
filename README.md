@@ -13,3 +13,7 @@ Setup:
 ( or just work from the jupyter notebook file :-) )
 
 Hei
+
+hei anne
+
+Hei Anne, kos går det?

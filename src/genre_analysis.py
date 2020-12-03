@@ -1,5 +1,5 @@
 
-class CountryAnalysis:
+class GenreAnalysis:
     def __init__(self, countries, genres, data_set, pop_genre_list = dict()):
         self.data_set = data_set
         self.countries = countries

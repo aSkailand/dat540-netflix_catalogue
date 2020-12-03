@@ -2,7 +2,7 @@ import pandas
 import numpy
 import data_sanitizer
 import get_unique
-import country_analysis
+import genre_analysis
 
 netflix_titles_filepath = 'netflix_titles.csv'
 
@@ -18,9 +18,9 @@ if __name__ == "__main__":
     unique_genres = get_unique.genres(data_set)
     unique_countries = get_unique.countires(data_set)
   
-    country_analysis = country_analysis.CountryAnalysis(unique_countries, unique_genres, data_set)
-    pop_movie_genre = country_analysis.analyse('Movie')
-    pop_series_genre = country_analysis.analyse('TV Show')
+    genre_analysis = genre_analysis.GenreAnalysis(unique_countries, unique_genres, data_set)
+    pop_movie_genre = genre_analysis.analyse('Movie')
+    pop_series_genre = genre_analysis.analyse('TV Show')
     
 
 

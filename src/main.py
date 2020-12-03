@@ -1,4 +1,5 @@
 import pandas
+import numpy
 import data_sanitizer
 import get_unique
 import gender_analysis
@@ -8,7 +9,7 @@ names_gender_filepath = 'name_gender.csv'
 
 def get_netflix_catalogue_dataframe():
     '''
-        Retruns netflix titles as a pandas dataframe.
+        Returns netflix titles as a pandas dataframe.
     '''
     return pandas.DataFrame(pandas.read_csv(netflix_titles_filepath))
 

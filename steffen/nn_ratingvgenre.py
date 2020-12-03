@@ -1,59 +1,63 @@
-#%% Importing libraries
+#%%
+import tensorflow as tf
 import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+from wordcloud import WordCloud
+from itertools import chain
+from collections import Counter
+
 import datetime
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction import text 
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
-#%% Reading CSV file, creating & transforming X data
-netflix_data=pd.read_csv("file1.csv")
+
+netflix_data=pd.read_csv("netflix_titles.csv", skipinitialspace=True)
 
 smaller_data = netflix_data.copy()
+smaller_data.dropna(subset=["date_added", "rating", "director", "cast"], inplace=True)
+
 
 y = smaller_data.listed_in
-X = [','.join((a, d, r, t)) for a,d,r,t in zip(smaller_data.director, smaller_data.cast, smaller_data.rating, smaller_data.title)]
+#X = [','.join((r)) for r in zip(smaller_data.rating)]
+X = smaller_data.rating
 
-# Custom stop words for the CountVectorizer to ignore while transforming.
-customStopWords=['no cast', 'no director', 'movies', 'tv shows', 'international', 'comedies']
+customStopWords=['no cast', 'no director', 
+                'international tv shows',  'stand-up', 'tv', 'shows', 'movie']
+
 add_stop_words = text.ENGLISH_STOP_WORDS.union(customStopWords)
 
-X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=1000) 
-matrix = CountVectorizer(
-    tokenizer=lambda row: [x.strip() for x in row.split(',') if x != ''], 
-    stop_words=add_stop_words)
-
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.2,random_state=1000) # random_state=1000 ???
+matrix = CountVectorizer(tokenizer=lambda row: [x.strip() for x in row.split(',')], stop_words=add_stop_words, token_pattern=u'(?u)\\b\\w+\\b')
 x_train_fit = matrix.fit_transform(X_train)
 x_test_fit = matrix.transform(X_test)
 
-#print(smaller_data.listed_in)
-#print(matrix.get_feature_names())
+print(smaller_data.listed_in)
 
-#%% Transform y data
+#print(matrix.get_feature_names())
+##%%
+
 y_train_fit = matrix.fit_transform(y_train)
 y_test_fit = matrix.transform(y_test)
 
-# Printing out all genres in the y data
-for i in matrix.get_feature_names():
-    print(i)
-
 #print(matrix.get_feature_names())
 #print(x_train_fit.toarray())
-#%% NN algorithm
+#%%
 hidden_layer1 = 1000 #round(x_train_fit.shape[1]*(2/3) + y_train_fit.shape[1])
 
-# Small datetime to check when ML started
 datetime_object = datetime.datetime.now()
 print("Begin ML: ", datetime_object)
 
+
 clf = MLPClassifier(hidden_layer_sizes=(hidden_layer1 ),
                     solver='adam', verbose=True, 
-                    random_state=1, max_iter=50) 
+                    random_state=1, max_iter=50) #tol=0.00000001,max_iter=1000,
 
 clf.fit(x_train_fit, y_train_fit)
 y_pred = clf.predict(x_test_fit)
@@ -63,7 +67,8 @@ print(accuracy_score(y_test_fit, y_pred))
 clf_score = clf.score(x_test_fit, y_test_fit)
 print("clf_score:", clf_score)
 
-# Small datetime to check when ML stopped
+print(X_train)
+
 datetime_object = datetime.datetime.now()
 print("End ML: ", datetime_object)
 # %%
@@ -74,5 +79,3 @@ print("End ML: ", datetime_object)
 # TODO: Take "TV Shows" out of data?
 # TODO: remove actors that only plays in one movie
 
-
-# %%

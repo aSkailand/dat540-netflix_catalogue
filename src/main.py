@@ -5,6 +5,7 @@ import data_sanitizer
 import get_unique
 import genre_analysis
 import gender_analysis
+import director_classification as dc
 
 # Files 
 netflix_titles_filepath = 'netflix_titles.csv'
@@ -39,9 +40,14 @@ if __name__ == "__main__":
     # Nupmy.ndarray containing unique directors.
     unique_directors = get_unique.directors(data_set)
 
-    # Analysing genrer representation in netflix catalogue.
+    # Analysing genre representation in netflix catalogue.
     genre_analysis = genre_analysis.GenreAnalysis(unique_countries, unique_genres, data_set)
     
+    # Classifying directors based on genres.
+    director_classification = dc.DirectorClassification(unique_directors, unique_genres, data_set)
+    populated = director_classification.populate_director_genre_dataframe()
+
+
     # Dictionary containing populare movie genre and count of that genre
     pop_movie_genre = genre_analysis.analyse('Movie')
 

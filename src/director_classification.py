@@ -16,8 +16,7 @@ class DirectorClassification:
     def populate_director_genre_dataframe(self):
         max = 0 
         maxdir = ''
-        directors_dataframe = pandas.DataFrame(columns = self.directors, index = self.genres)
-        print(len(directors_dataframe.columns))
+        directors_dataframe = pandas.DataFrame(0, columns = self.directors, index = self.genres)
         for director in directors_dataframe:
             # Finds the most frequent director.
             # Ignore unknown director.
@@ -31,10 +30,10 @@ class DirectorClassification:
 
             # Populates the director dataframe with count for each genre    
             for listed_in_list in temp_df:
-
                 for genre in self.genres:
                     if genre in listed_in_list.split(','):
-                       directors_dataframe[director].loc[genre] += 1.0
+                        
+                        directors_dataframe[director].loc[genre] += 1.0
                        
         return directors_dataframe
                 

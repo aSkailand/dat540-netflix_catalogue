@@ -43,11 +43,9 @@ if __name__ == "__main__":
     # Analysing genre representation in netflix catalogue.
     genre_analysis = genre_analysis.GenreAnalysis(unique_countries, unique_genres, data_set)
     
-    # Classifying directors based on genres.
+    # Initiating DirectorClassification for classifying directors based on genres.
     director_classification = dc.DirectorClassification(unique_directors, unique_genres, data_set)
-    populated = director_classification.populate_director_genre_dataframe()
-
-
+   
     # Dictionary containing populare movie genre and count of that genre
     pop_movie_genre = genre_analysis.analyse('Movie')
 

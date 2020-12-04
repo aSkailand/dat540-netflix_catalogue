@@ -84,3 +84,14 @@ def create_table(dataframe):
     df = df[all_months()]
     df = df.sort_values(by = "year")
     return df
+
+def heatplot_analysis(dataframe):
+    dataframe = valid_dates(dataframe)
+    dataframe = create_month_column(dataframe)
+    dataframe = create_year_column(dataframe)
+    dataframe_table = create_table(dataframe)
+    title = input("Enter heatmap plot title: ")
+    xlab = input("Enter heatmap xlab: ")
+    ylab = input("Enter heatmap ylab: ")
+    heatmap(dataframe_table,title=title,xlab=xlab,ylab=ylab)
+    return dataframe_table

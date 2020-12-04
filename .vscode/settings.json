@@ -2,5 +2,5 @@
     "jupyter.jupyterServerType": "local",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
-    "python.pythonPath": "C:\\Users\\aleks\\Anaconda3\\python.exe"
+    "python.pythonPath": "C:\\Python38\\python.exe"
 }

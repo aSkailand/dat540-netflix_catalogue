@@ -21,7 +21,7 @@ class DirectorClassification:
             # Finds the most frequent director.
             # Ignore unknown director.
             if (director == 'Unknown director'):
-                break
+                continue
             temp_df = self.data_set.loc[self.data_set.director.str.contains(director)]['listed_in']
             temp_count = temp_df.shape[0]
             if(temp_count > max):

@@ -3,6 +3,7 @@ import pandas
 import numpy
 import data_sanitizer
 import get_unique
+import yrs_months
 import genre_analysis
 import gender_analysis
 import director_classification as dc
@@ -36,6 +37,7 @@ if __name__ == "__main__":
     
     # Numpy.ndarray containing unique countries.
     unique_countries = get_unique.countires(data_set)
+    years_movies = get_unique.get_years(data_set,"Movie")
 
     # Nupmy.ndarray containing unique directors.
     unique_directors = get_unique.directors(data_set)

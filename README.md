@@ -12,4 +12,7 @@ Setup:
   
 ( or just work from the jupyter notebook file :-) )
 
+look at this awesome graphic by @alekbj16 :
+![alt text](https://github.com/aSkailand/dat540-netflix_catalogue/blob/master/src/content.PNG)
+
 * note to self, never ever use jupyter notebooks as the main form of document when doing a collaborated data science project with 6(!) group members.

@@ -7,7 +7,6 @@ import yrs_months
 import genre_analysis
 import gender_analysis
 import director_classification as dc
-
 # Files 
 netflix_titles_filepath = 'netflix_titles.csv'
 names_gender_filepath = 'name_gender.csv'
@@ -37,6 +36,7 @@ if __name__ == "__main__":
     
     # Numpy.ndarray containing unique countries.
     unique_countries = get_unique.countires(data_set)
+
     years_movies = get_unique.get_years(data_set,"Movie")
 
     # Nupmy.ndarray containing unique directors.
@@ -59,6 +59,5 @@ if __name__ == "__main__":
 
     if (input('analyse gender representation? *takes up to 10 minutes* hit: [y]') == 'y'):
         gender_analysis.analyse(names, data_set)
-
 
 

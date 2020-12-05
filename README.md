@@ -12,8 +12,4 @@ Setup:
   
 ( or just work from the jupyter notebook file :-) )
 
-Hei
-
-hei anne
-
-Hei Anne, kos går det?
+* note to self, never ever use jupyter notebooks as the main form of document when doing a collaborated data science project with 6(!) group members.
